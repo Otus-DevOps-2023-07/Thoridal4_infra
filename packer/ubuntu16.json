@@ -1,103 +1,37 @@
 {
-  "build": [
-    {
-      "provisioner": [
+    "builders": [
         {
-          "shell": [
-            {
-              "inline": [
+            "type": "yandex",
+            "service_account_key_file": "{{ user `service_account_key_file` }}",
+            "folder_id": "{{ user `folder_id` }}",
+            "source_image_family": "{{ user `source_image_family` }}",
+            "image_name": "reddit-base-{{timestamp}}",
+            "image_family": "reddit-base",
+            "ssh_username": "ubuntu",
+            "platform_id" : "standard-v3",
+            "zone": "{{user `zone`}}",
+            "use_ipv4_nat": "{{ user `use_ipv4_nat`}}"
+
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
                 "echo Waiting for apt-get to finish...",
                 "a=1; while [ -n \"$(pgrep apt-get)\" ]; do echo $a; sleep 1s; a=$(expr $a + 1); done",
                 "echo Done."
-              ]
-            }
-          ]
+            ]
         },
         {
-          "shell": [
-            {
-              "execute_command": "sudo {{.Path}}",
-              "name": "ruby",
-              "script": "./scripts/install_ruby.sh"
-            }
-          ]
+            "type": "shell",
+            "script": "./scripts/install_ruby.sh",
+            "execute_command": "sudo {{.Path}}"
         },
         {
-          "shell": [
-            {
-              "execute_command": "sudo {{.Path}}",
-              "name": "mongodb",
-              "script": "./scripts/install_mongodb.sh"
-            }
-          ]
+            "type": "shell",
+            "script": "./scripts/install_mongodb.sh",
+            "execute_command": "sudo {{.Path}}"
         }
-      ],
-      "sources": [
-        "source.yandex.ubuntu16"
-      ]
-    }
-  ],
-  "source": [
-    {
-      "yandex": [
-        {
-          "ubuntu16": [
-            {
-              "image_family": "reddit-base",
-              "image_name": "reddit-base-${formatdate(\"MM-DD-YYYY\", timestamp())}",
-              "platform_id": "standard-v1",
-              "use_ipv4_nat": true,
-              "folder_id": "b1gkj0iq69tfdr1ia10k",
-              "service_account_key_file": "~/key.json",
-              "source_image_family": "ubuntu-1604-lts",
-              "ssh_username": "ubuntu",
-              "zone": "ru-central1-b"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "variable": [
-    {
-      "folder_id": [
-        {
-          "type": "string",
-          "default": null
-        }
-      ]
-    },
-    {
-      "service_account_key_file": [
-        {
-          "type": "string",
-          "default": null
-        }
-      ]
-    },
-    {
-      "source_image_family": [
-        {
-          "type": "string",
-          "default": null
-        }
-      ]
-    },
-    {
-      "ssh_username": [
-        {
-          "type": "string",
-          "default": null
-        }
-      ]
-    },
-    {
-      "zone": [
-        {
-          "type": "string",
-          "default": null
-        }
-      ]
-    }
-  ]
+    ]
 }
