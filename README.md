@@ -1,22 +1,24 @@
 # Thoridal4_infra
 Thoridal4 Infra repository
 
-## ДЗ №4
+## ДЗ №5
 ```
-testapp_IP = 158.160.5.195
+testapp_IP = 130.193.40.53
 testapp_port = 9292
 ```
-- Был установлен и настроен yc cli
-- Создан инстанс через yc cli
-- Задеплоено приложение reddit monolith
-- Написаны скрипты для установки софта
-- Выполнена самостоятельная работа по инициализации vm с параметрами через cloud-init
+- Был установлен packer
+- Созданы конфигурационные файлы .pkr.hcl и их шаблоны
+- Был создан образ vm
+- Автоматизировано создание vm
+- С помощью packer задеплоено приложение reddit monolith
 
-## Самостоятельная работа
-- deploy.sh - деплой приложения через bundler
-- install_mongodb.sh - уcтановка mongodb
-- install_rubby.sh - установка ruby
-
-## Дополнительное задание
-- vm-initialization.sh - скрипт установки инстанча чезер yc cli
-- cloud-init.yml - данные cloud-init для передачи в metadata установки инстанса
+## Тесты
+Base:
+```
+cd packer && packer build -var-file=variables.pkrvar.hcl ubuntu16.pkr.hkl
+```
+Full:
+```
+cd packer && packer build -var-file=variables.pkrvar.hcl immutable.pkr.hkl
+bash config-scripts/create-reddit-vm.sh
+```
