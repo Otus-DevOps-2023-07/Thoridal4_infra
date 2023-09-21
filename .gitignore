@@ -1,3 +1,8 @@
 .idea
 variables.json
 variables.pkrvars.hcl
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
