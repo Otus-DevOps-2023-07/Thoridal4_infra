@@ -1,17 +1,21 @@
 # Thoridal4_infra
 Thoridal4 Infra repository
 
-## ДЗ №6
+## ДЗ №7
 
-- Был установлен terraform
-- Настроены конфигурационные файлы и файлы переменных
-- Подняты два инстанса с рабоим приложением reddit на борту
-- Настроен и создан load-balancer
+- Приложение и база разнесены по разным виртуалкам
+- Создан бакет для хранения стейтов
+- Были написаны отдельные модули app, db, vpc
+- Окружения были разделены на prod и stage
 
 ## Тесты
 
 ```
-terraform init
+export ACCESS_KEY="<access_key>"
+export SECRET_KEY="<secret_key>"
+cd terraform/prod/
+terraform init -backend-config="access_key=$ACCESS_KEY" -backend-config="secret_key=$SECRET_KEY"
 terraform plan
 terraform apply
+
 ```
