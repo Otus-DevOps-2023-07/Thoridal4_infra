@@ -23,6 +23,11 @@ variable "zone" {
   default = null
 }
 
+variable "subnet_id" {
+  type = string
+  default = null
+}
+
 source "yandex" "ubuntu16" {
   service_account_key_file = var.service_account_key_file
   folder_id = var.folder_id
@@ -33,6 +38,7 @@ source "yandex" "ubuntu16" {
   platform_id = "standard-v1"
   zone = var.zone
   use_ipv4_nat = true
+  subnet_id = var.subnet_id
 }
 
 build {
