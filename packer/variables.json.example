@@ -3,6 +3,6 @@
     "service_account_key_file": "./packer/key.json.example",
     "source_image_family": "ubuntu-1604-lts",
     "ssh_username": "ubuntu",
-    "zone": "ru-central1-b"
+    "zone": "ru-central1-b",
     "subnet_id": "<subnet_id>"
 }
