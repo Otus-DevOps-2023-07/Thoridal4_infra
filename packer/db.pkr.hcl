@@ -46,9 +46,13 @@ build {
     ]
   }
 
-  provisioner "shell" {
-    name            = "mongodb"
-    script          = "./scripts/install_mongodb.sh"
-    execute_command = "sudo {{.Path}}"
+  provisioner "ansible" {
+    user            = "ubuntu"
+    playbook_file   = "ansible/packer_db.yml"
   }
+#  provisioner "shell" {
+#    name            = "mongodb"
+#    script          = "./packer/scripts/install_mongodb.sh"
+#    execute_command = "sudo {{.Path}}"
+#  }
 }

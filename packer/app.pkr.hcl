@@ -48,7 +48,7 @@ build {
 
   provisioner "shell" {
     name            = "ruby"
-    script          = "./scripts/install_ruby.sh"
+    script          = "./packer/scripts/install_ruby.sh"
     execute_command = "sudo {{.Path}}"
   }
 }
