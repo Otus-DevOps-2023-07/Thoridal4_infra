@@ -22,3 +22,8 @@ variable "zone" {
   type = string
   default = "ru-central1-b"
 }
+
+variable "subnet_id" {
+  type = string
+  default = "<subnet_id>"
+}

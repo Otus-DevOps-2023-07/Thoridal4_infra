@@ -33,6 +33,7 @@ source "yandex" "ubuntu16" {
   platform_id = "standard-v1"
   zone = var.zone
   use_ipv4_nat = true
+  subnet_id = var.subnet_id
 }
 
 build {

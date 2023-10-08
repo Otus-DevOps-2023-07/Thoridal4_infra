@@ -1,16 +1,19 @@
 # Thoridal4_infra
 Thoridal4 Infra repository
 
-## ДЗ №8
+## ДЗ №9
 
-- Установлен ansible
-- Изучены некоторые модули
-- Созданы инвентори файлы
-- Написан плэйбук для клонирования репозитория
-
+- Были освоены handlers, tamplates, tags
+- Написаны несколько плэйбуков
+- Пересобраны packer образы и на их основе терраформом подняты инстансы
+- На поднятых инстансах плэйбуком, включающим в себя другие, было развёрнута база и приложение
+- "use_proxy": false убран для автотестов
 ## Тесты
 
 ```
-ansible-playbook clone.yml
+packer build -var-file=packer/variables.json packer/db.json
+packer build -var-file=packer/variables.json packer/app.json
+terraform apply
+ansible-playbook site.yml
 
 ```
