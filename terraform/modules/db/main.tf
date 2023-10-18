@@ -1,11 +1,11 @@
-#terraform {
-#  required_providers {
-#    yandex = {
-#      source = "yandex-cloud/yandex"
-#      version = "0.95.0"
-#    }
-#  }
-#}
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+      version = "0.95.0"
+    }
+  }
+}
 
 resource "yandex_compute_instance" "db" {
   name = "reddit-db"
@@ -40,11 +40,11 @@ resource "yandex_compute_instance" "db" {
   agent       = false
   private_key = file(var.private_key_path)
   }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo sed -i 's/127.0.0.1/${yandex_compute_instance.db.network_interface.0.ip_address}/g' /etc/mongod.conf",
-      "sudo systemctl restart mongod",
-    ]
-  }
+#
+#  provisioner "remote-exec" {
+#    inline = [
+#      "sudo sed -i 's/127.0.0.1/${yandex_compute_instance.db.network_interface.0.ip_address}/g' /etc/mongod.conf",
+#      "sudo systemctl restart mongod",
+#    ]
+#  }
 }
