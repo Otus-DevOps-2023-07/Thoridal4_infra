@@ -1,7 +1,7 @@
 ---
 - name: Show info about the environments this host belongs to
   debug:
-    msg: "This host is in {{ environments }} environment!"
+    msg: "This host is in {{ env }} environment!"
 
 - name: Change mongo config file
   template:
