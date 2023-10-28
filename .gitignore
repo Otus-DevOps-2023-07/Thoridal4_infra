@@ -7,3 +7,5 @@ variables.pkrvars.hcl
 *.tfvars
 .terraform/
 *.retry
+jdauphant.nginx
+vault.key

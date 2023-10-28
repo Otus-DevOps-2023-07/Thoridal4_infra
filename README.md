@@ -1,19 +1,16 @@
 # Thoridal4_infra
 Thoridal4 Infra repository
 
-## ДЗ №9
+## ДЗ №10
 
-- Были освоены handlers, tamplates, tags
-- Написаны несколько плэйбуков
-- Пересобраны packer образы и на их основе терраформом подняты инстансы
-- На поднятых инстансах плэйбуком, включающим в себя другие, было развёрнута база и приложение
+- Была освоена иерархическая структура репозитория
+- Среды плэйбука разделены на stage и prod
+- Была применена роль nginx через ansible-galaxy
+- С помощью ansible-vault зашифрованы пользовательские креды
 - "use_proxy": false убран для автотестов
 ## Тесты
 
 ```
-packer build -var-file=packer/variables.json packer/db.json
-packer build -var-file=packer/variables.json packer/app.json
-terraform apply
-ansible-playbook site.yml
+ansible-playbook playbooks/site.yml
 
 ```
